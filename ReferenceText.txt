@@ -1,0 +1,8 @@
+git clone : clones a repository onto computer
+git commit: comments on a repository file
+git pull: updates the local repositoy with the online one(which is probably more updated)
+git push: updates the online repository with the changes made in the local repository
+git config --global user.name "Sam Smith"
+git config --global user.email sam@example.com   : configures you email and username so that people know who is working on the repository
+git init : creates new repository
+git status : List the files you've changed and those you still need to add or commit
