@@ -1,0 +1,44 @@
+public boolean isDone(){
+int num = 1;
+for(int r = 0 ; r < side ; r++){
+	for(int c = 0 ; c <side ; c++){
+		if (values[r][c] != 0) {
+			if(values[r][c] != num){
+				return false;
+}
+		else{
+			num++;
+}
+}
+}
+
+}
+return true;
+}
+
+public boolean isDone(){
+int r,c = 0;
+int num = 1;
+while(r<side){
+	if(value[r][c] == num){
+		num++;
+		c++;
+	}
+}
+else {
+	if(value[r][c] == 0 ){
+		c++;
+		if(c == side){
+			c = 0;
+			r++;
+}
+}
+else[
+	return false;
+}
+}
+return true;
+}
+
+
+
