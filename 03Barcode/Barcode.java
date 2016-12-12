@@ -1,20 +1,24 @@
+import java.util.regex.Pattern;
+
 public class Barcode implements Comparable<Barcode> {
-	private String zip, _zip;
+	private String zip;
 	private int check;
 	private String barcode;
 
 	public static void main(String[] args) {
 		Barcode test = new Barcode("12345");
 		System.out.println(test.toString());
-
+		
 	}
 
 	public Barcode(String z) {
 		try {
-			int temp = Integer.parseInt(z);
-			if (z.length() != 5) {
+			//int temp = Integer.parseInt(z);
+			//if it cant be parseInted into an interger than it has a letter
+			if (z.length() != 5 || Pattern.matches("[a-zA-Z]+", z)) {
 				throw new IllegalArgumentException("Illegal Argument");
 			}
+			//if anything in the string matches any letters then throw new exception
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Illegal Argument");
 		}
@@ -31,11 +35,17 @@ public class Barcode implements Comparable<Barcode> {
 	}
 
 	public String toString() {
-		return (zip + check + " " + "|" + createBarcode() + "|");
+		return (zip + check + " " + "|" + toCode(zip) + "|");
 	}
 
-	private String createBarcode() {
+	private String toCode(String z) {
 		String result = "";
+		if (z.length() != 5) {
+			throw new IllegalArgumentException("Illegal Argument");
+		}
+		if (z.length() != 5 || Pattern.matches("[a-zA-Z]+", z)) {
+			throw new IllegalArgumentException("Illegal Argument");
+		}
 		for (int i = 0; i < zip.length(); i++) {
 			switch (Integer.parseInt(zip.charAt(i) + "")) {
 			case 1:
@@ -74,7 +84,7 @@ public class Barcode implements Comparable<Barcode> {
 		return barcode;
 	}
 
-	private String createZip(String barcode) {
+	private String toZip(String barcode) {
 		String result = "";
 		for (int i = 0; i < barcode.length() - 1; i++) {
 			if (!barcode.substring(i, i + 1).equals("|") && !barcode.substring(i, i + 1).equals(":")) {
@@ -122,10 +132,18 @@ public class Barcode implements Comparable<Barcode> {
 			case "||:::":
 				result = result + 0;
 				break;
+				default:
+					throw new IllegalArgumentException("Illegal Argument");
 			}
 		}
-		_zip = result;
-		return _zip;
+		int CHECK = 0 ;
+		for (int i = 0 ; i < result.length() -1 ; i++){
+			CHECK += Integer.parseInt(result.charAt(i)+ "");
+		}
+		if (CHECK%10 != Integer.parseInt(result.substring(5))){
+			throw new IllegalArgumentException("Illegal Argument");
+		}
+		return result.substring(0, 5);
 	}
 
 	public int compareTo(Barcode other) {
