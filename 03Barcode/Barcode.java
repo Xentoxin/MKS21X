@@ -9,6 +9,7 @@ public class Barcode implements Comparable<Barcode> {
 		Barcode test = new Barcode("12345");
 		System.out.println(test.toString());
 		
+		
 	}
 
 	public Barcode(String z) {
@@ -35,11 +36,48 @@ public class Barcode implements Comparable<Barcode> {
 	}
 
 	public String toString() {
-		return (zip + check + " " + "|" + toCode(zip) + "|");
+		return (zip + check + " " + toCode2(zip));
 	}
-
-	private String toCode(String z) {
-		String result = "";
+private String toCode2(String z){
+	String finalCode = "";
+	String result = "";
+	switch(checkSum()){
+	case 1:
+		result = ":::||";
+		break;
+	case 2:
+		result = "::|:|";
+		break;
+	case 3:
+		result = "::||:";
+		break;
+	case 4:
+		result = ":|::|";
+		break;
+	case 5:
+		result = ":|:|:";
+		break;
+	case 6:
+		result = ":||::";
+		break;
+	case 7:
+		result = "|:::|";
+		break;
+	case 8:
+		result = "|::|:";
+		break;
+	case 9:
+		result = "|:|::";
+		break;
+	case 0:
+		result = "||:::";
+		break;
+	}
+	finalCode = toCode1(z) + result + "|";
+	return finalCode;
+}
+	private String toCode1(String z) {
+		String result = "|";
 		if (z.length() != 5) {
 			throw new IllegalArgumentException("Illegal Argument");
 		}
@@ -80,8 +118,7 @@ public class Barcode implements Comparable<Barcode> {
 				break;
 			}
 		}
-		barcode = result;
-		return barcode;
+		return result;
 	}
 
 	private String toZip(String barcode) {
