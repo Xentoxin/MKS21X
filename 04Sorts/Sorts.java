@@ -49,6 +49,22 @@ public class Sorts {
 		}
 	}
 
+	
+	public static void BubbleSort(int[] array){
+		int j, temp;
+		boolean thing = true;
+		while(thing){
+			thing = false;
+			for (j =0; j <array.length- 1; j++){
+				if( array[j] > array[j+1]){
+					temp = array[j];
+					array[j] = array[j+1];
+					array[j+1] = temp;
+					thing = true;
+				}
+			}
+		}
+	}
 	public static String toString(int[] array) {
 		String str = "[";
 		for (int i = 0; i < array.length - 1; i++) {
@@ -61,8 +77,11 @@ public class Sorts {
 	public static void main(String[] args) {
 		int[] sadbois = { 25, 32, 4, 62, 6, 5, 8, 3, 9, 10 };
 		System.out.println(toString(sadbois));
-		InsertionSort(sadbois);
+		final long start = System.nanoTime();
+		BubbleSort(sadbois);
+		final float runtime = System.nanoTime() - start;
 		System.out.println(toString(sadbois));
-
+		System.out.println("Runtime : " + runtime/1000000 + " Milliseconds");
+		
 	}
 }
