@@ -67,7 +67,7 @@ public class Sorts {
 	}
 	public static String toString(int[] array) {
 		String str = "[";
-		for (int i = 0; i < array.length - 1; i++) {
+		for (int i = 0; i < array.length ; i++) {
 			str += array[i] + ", ";
 		}
 		str += "]";
@@ -75,7 +75,7 @@ public class Sorts {
 	}
 
 	public static void main(String[] args) {
-		int[] sadbois = { 25, 32, 4, 62, 6, 5, 8, 3, 9, 10 };
+		int[] sadbois = {1,2,-3,4,5,-6,7,8,9,0};
 		System.out.println(toString(sadbois));
 		final long start = System.nanoTime();
 		BubbleSort(sadbois);
